@@ -5,7 +5,6 @@
   box-sizing: border-box;
 }
 body {
-  /* font-family: "Noto Sans Mono", sans-serif; */
   font-family: Verdana, Geneva, Tahoma, sans-serif;
   background-color: rgb(27, 27, 50);
   color: rgb(10, 10, 35);
@@ -38,6 +37,110 @@ label {
   display: block;
   color: black;
   align-self: center;
+}
+#search-input {
+  height: 40px;
+  padding-left: 10px;
+  width: 200px;
+  margin-top: 1rem;
+}
+#search-button {
+  width: 80px;
+  text-align: center;
+  background-color: rgb(127, 33, 171);
+  color: rgb(245, 246, 247);
+  padding: 14px 0px;
+  border-radius: 20px;
+  border-style: none;
+}
+.output,
+#search-form {
+  display: flex;
+  justify-content: center;
+}
+.output {
+  flex-direction: column;
+  align-items: center;
+  margin: 10px 0px;
+  padding: 5px;
+}
+.top-container,
+.bottom-container {
+  display: flex;
+  flex-direction: column;
+  width: 100%;
+  min-height: 325px;
+}
+.top-container {
+  margin-bottom: 10px;
+  background-color: rgb(240, 241, 247);
+  padding: 10px;
+}
+.name-and-id {
+  height: 28px;
+  font-size: 1.1em;
+  text-transform: capitalize;
+  margin-bottom: 5px;
+}
+.size {
+  height: 22px;
+  font-size: 0.85rem;
+}
+.sprite-container {
+  flex-grow: 2;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+#types {
+  min-height: 30px;
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: flex-start;
+  gap: 5px;
+}
+table {
+  border-collapse: collapse;
+  width: 100%;
+  color: rgb(245, 246, 247);
+  background-color: rgb(127, 33, 171);
+  border-spacing: 0px;
+}
+tbody {
+  display: table-row-group;
+  vertical-align: middle;
+  unicode-bidi: isolate;
+  border-color: inherit;
+}
+tr {
+  display: table-row;
+  vertical-align: inherit;
+  unicode-bidi: isolate;
+  border-color: inherit;
+}
+tr {
+  border-bottom: 5px solid rgb(245, 246, 247);
+}
+td,
+th {
+  text-align: center;
+  padding: 8px;
+}
+th {
+  display: table-cell;
+  vertical-align: inherit;
+  font-weight: bold;
+  text-align: -internal-center;
+  unicode-bidi: isolate;
+}
+td {
+  display: table-cell;
+  vertical-align: inherit;
+  unicode-bidi: isolate;
+}
+th:nth-child(2n),
+td:nth-child(2n) {
+  border-left: 5px solid rgb(245, 246, 247);
 }
 /* iPad */
 @media only screen and (max-width: 1024px) {
