@@ -77,6 +77,11 @@ label {
   background-color: rgb(240, 241, 247);
   padding: 10px;
 }
+.middle-container {
+  margin-bottom: 10px;
+  display: flex;
+  justify-content: flex-start;
+}
 .name-and-id {
   height: 28px;
   font-size: 1.1em;
@@ -103,8 +108,6 @@ label {
 #types {
   min-height: 30px;
   display: flex;
-  /* align-items: center;
-  justify-content: left; */
   flex-wrap: wrap;
 
   margin: 0 0;

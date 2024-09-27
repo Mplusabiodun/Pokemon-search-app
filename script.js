@@ -1,7 +1,5 @@
 let searchInput = document.getElementById("search-input");
 let searchBtn = document.getElementById("search-button");
-// let pokemonImage = document.getElementById("sprite-container");
-// let pokemonType = document.getElementById("types");
 let hp = document.getElementById("hp");
 let attack = document.getElementById("attack");
 let defense = document.getElementById("defense");
@@ -37,14 +35,16 @@ const searchPokemon = async (event) => {
     const { name, id, height, weight, sprites, types, stats } =
       individualPokemanData;
     const { back_default } = sprites;
-    // for (const type of types) {
-    //   console.log(`The name is `, type);
-    // }
-    // console.log(`The name is `, name);
-    // console.log(`this is the id `, id);
-    // console.log(`the height is `, height);
-    // console.log(`the weight is `, weight);
-    // console.log(`the weight is `, back_default);
+
+    console.log(types);
+    types.forEach((obj) => {
+      console.log(obj.type.name);
+      let typesOfPokemon = document.querySelector(".middle-container");
+      typesOfPokemon.innerHTML = `<span class="type ${
+        obj.type.name
+      }">${obj.type.name.toUpperCase()}</span>`;
+    });
+
     let pokemonInfo = document.querySelector(".top-container");
     pokemonInfo.innerHTML = `
               <div class="name-and-id">
@@ -57,17 +57,14 @@ const searchPokemon = async (event) => {
               </div>
               <div id="sprite-container" class="sprite-container"><img id="sprite" src="${back_default}" alt="${name} front default sprite"></div>
 
-              <div id="types">
-              <span class="type grass"></span>
-              <span class="type poison"></span>
-              </div>
+              
             `;
-    let hp = document.getElementById("hp");
-    attack = stats[0];
-    // let defense = document.getElementById("defense");
-    // let specialAttack = document.getElementById("special-attack");
-    // let specialDefense = document.getElementById("special-defense");
-    speed = stats[6];
+    hp.textContent = stats[0].base_stat;
+    attack.textContent = stats[1].base_stat;
+    defense.textContent = stats[2].base_stat;
+    specialAttack.textContent = stats[3].base_stat;
+    specialDefense.textContent = stats[4].base_stat;
+    speed.textContent = stats[5].base_stat;
   } else {
     alert("Pokémon not found");
   }
