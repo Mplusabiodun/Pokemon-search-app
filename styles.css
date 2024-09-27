@@ -52,6 +52,7 @@ label {
   padding: 14px 0px;
   border-radius: 20px;
   border-style: none;
+  cursor: pointer;
 }
 .output,
 #search-form {
@@ -60,7 +61,7 @@ label {
 }
 .output {
   flex-direction: column;
-  align-items: center;
+  /* align-items: center; */
   margin: 10px 0px;
   padding: 5px;
 }
@@ -81,10 +82,13 @@ label {
   font-size: 1.1em;
   text-transform: capitalize;
   margin-bottom: 5px;
+  font-weight: bold;
+  text-align: left;
 }
 .size {
   height: 22px;
   font-size: 0.85rem;
+  text-align: left;
 }
 .sprite-container {
   flex-grow: 2;
@@ -92,12 +96,34 @@ label {
   align-items: center;
   justify-content: center;
 }
+#sprite {
+  width: 180px;
+  display: block;
+}
 #types {
   min-height: 30px;
   display: flex;
+  /* align-items: center;
+  justify-content: left; */
   flex-wrap: wrap;
-  justify-content: flex-start;
+
+  margin: 0 0;
   gap: 5px;
+}
+.type {
+  width: 66px;
+  padding: 7px;
+  font-size: 0.8rem;
+  text-align: center;
+  border-radius: 5px;
+  background-color: red;
+  text-transform: uppercase;
+}
+.grass {
+  background-color: #78cc55;
+}
+.poison {
+  background-color: #c68bb7;
 }
 table {
   border-collapse: collapse;
