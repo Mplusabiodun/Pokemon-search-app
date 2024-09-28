@@ -77,11 +77,11 @@ label {
   background-color: rgb(240, 241, 247);
   padding: 10px;
 }
-.middle-container {
+/* .middle-container {
   margin-bottom: 10px;
   display: flex;
   justify-content: flex-start;
-}
+} */
 .name-and-id {
   height: 28px;
   font-size: 1.1em;
@@ -114,8 +114,8 @@ label {
   gap: 5px;
 }
 .type {
-  width: 66px;
-  padding: 7px;
+  width: 72px;
+  padding: 5px;
   font-size: 0.8rem;
   text-align: center;
   border-radius: 5px;

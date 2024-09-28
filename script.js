@@ -25,40 +25,47 @@ fetchValidPokemon();
 const searchPokemon = async (event) => {
   event.preventDefault();
   let pokemanValidName = searchInput.value.toLowerCase();
+  let pokemanValidId = parseInt(pokemanValidName);
 
   const { results } = pokemanData;
   const pokemon = results?.find((result) => {
-    return result.name === pokemanValidName;
+    return result.name === pokemanValidName || result.id === pokemanValidId;
   });
   if (pokemon) {
     await fetchPokemon(pokemon.name || pokemon.id);
     const { name, id, height, weight, sprites, types, stats } =
       individualPokemanData;
-    const { back_default } = sprites;
+    const { front_default } = sprites;
+
+    let pokemonName = document.getElementById("pokemon-name");
+    let pokemonId = document.getElementById("pokemon-id");
+    let pokemonWeight = document.getElementById("weight");
+    let pokemonHeight = document.getElementById("height");
+    let spriteContainer = document.getElementById("sprite-container");
+
+    pokemonName.textContent = name.toUpperCase();
+    pokemonId.textContent = `#${id}`;
+    pokemonWeight.textContent = `Weight: ${weight}`;
+    pokemonHeight.textContent = `Height: ${height}`;
+    spriteContainer.innerHTML = `<img id="sprite" src="${front_default}" alt="${name} front default sprite">`;
 
     console.log(types);
-    types.forEach((obj) => {
+    // types.forEach((obj) => {
+    //   console.log(obj.type.name);
+    //   let typesOfPokemon = document.querySelector("#types");
+    //   typesOfPokemon.innerHTML = `<span class="type ${
+    //     obj.type.name
+    //   }">${obj.type.name.toUpperCase()}</span>`;
+    // });
+
+    for (const obj of types) {
       console.log(obj.type.name);
-      let typesOfPokemon = document.querySelector(".middle-container");
+      let typesOfPokemon = document.querySelector("#types");
       typesOfPokemon.innerHTML = `<span class="type ${
         obj.type.name
       }">${obj.type.name.toUpperCase()}</span>`;
-    });
+    }
 
-    let pokemonInfo = document.querySelector(".top-container");
-    pokemonInfo.innerHTML = `
-              <div class="name-and-id">
-                <span id="pokemon-name">${name.toUpperCase()}</span>
-                <span id="pokemon-id">#${id}</span>
-              </div>
-              <div class="size">
-                <span id="weight">Weight: ${weight}</span>
-                <span id="height">Height: ${height}</span>
-              </div>
-              <div id="sprite-container" class="sprite-container"><img id="sprite" src="${back_default}" alt="${name} front default sprite"></div>
-
-              
-            `;
     hp.textContent = stats[0].base_stat;
     attack.textContent = stats[1].base_stat;
     defense.textContent = stats[2].base_stat;
