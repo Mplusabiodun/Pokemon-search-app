@@ -6,9 +6,15 @@ let defense = document.getElementById("defense");
 let specialAttack = document.getElementById("special-attack");
 let specialDefense = document.getElementById("special-defense");
 let speed = document.getElementById("speed");
+let typesOfPokemon = document.querySelector("#types");
 let validPokemon = "https://pokeapi-proxy.freecodecamp.rocks/api/pokemon";
 let pokemanData;
 let individualPokemanData;
+let pokemonName = document.getElementById("pokemon-name");
+let pokemonId = document.getElementById("pokemon-id");
+let pokemonWeight = document.getElementById("weight");
+let pokemonHeight = document.getElementById("height");
+let spriteContainer = document.getElementById("sprite-container");
 
 const fetchValidPokemon = async () => {
   try {
@@ -24,9 +30,13 @@ fetchValidPokemon();
 
 const searchPokemon = async (event) => {
   event.preventDefault();
+  let pokemanInvalid = searchInput.value;
   let pokemanValidName = searchInput.value.toLowerCase();
   let pokemanValidId = parseInt(pokemanValidName);
+  console.log(pokemanValidName);
+  console.log(pokemanInvalid);
 
+  resetDisplay();
   const { results } = pokemanData;
   const pokemon = results?.find((result) => {
     return result.name === pokemanValidName || result.id === pokemanValidId;
@@ -36,12 +46,6 @@ const searchPokemon = async (event) => {
     const { name, id, height, weight, sprites, types, stats } =
       individualPokemanData;
     const { front_default } = sprites;
-
-    let pokemonName = document.getElementById("pokemon-name");
-    let pokemonId = document.getElementById("pokemon-id");
-    let pokemonWeight = document.getElementById("weight");
-    let pokemonHeight = document.getElementById("height");
-    let spriteContainer = document.getElementById("sprite-container");
 
     pokemonName.textContent = name.toUpperCase();
     pokemonId.textContent = `#${id}`;
@@ -60,8 +64,7 @@ const searchPokemon = async (event) => {
 
     for (const obj of types) {
       console.log(obj.type.name);
-      let typesOfPokemon = document.querySelector("#types");
-      typesOfPokemon.innerHTML = `<span class="type ${
+      typesOfPokemon.innerHTML += `<span class="type ${
         obj.type.name
       }">${obj.type.name.toUpperCase()}</span>`;
     }
@@ -72,9 +75,29 @@ const searchPokemon = async (event) => {
     specialAttack.textContent = stats[3].base_stat;
     specialDefense.textContent = stats[4].base_stat;
     speed.textContent = stats[5].base_stat;
+  } else if (pokemanInvalid === "Red") {
+    resetDisplay();
+    alert("Pokémon not found");
   } else {
+    resetDisplay();
     alert("Pokémon not found");
   }
+};
+
+const resetDisplay = () => {
+  // searchInput.value = "";
+  pokemonName.textContent = "";
+  pokemonId.textContent = ``;
+  pokemonWeight.textContent = ``;
+  pokemonHeight.textContent = ``;
+  spriteContainer.innerHTML = ``;
+  typesOfPokemon.replaceChildren();
+  hp.textContent = "";
+  attack.textContent = "";
+  defense.textContent = "";
+  specialAttack.textContent = "";
+  specialDefense.textContent = "";
+  speed.textContent = "";
 };
 
 // searchBtn.addEventListener("click", (event) => event.preventDefault());
@@ -92,8 +115,3 @@ const fetchPokemon = async (pokemanIdentifier) => {
     console.log(err);
   }
 };
-
-// if (pokemanName.trim() === "") {
-//   alert("Please enter a Pokémon name!");
-//   return;
-// }
