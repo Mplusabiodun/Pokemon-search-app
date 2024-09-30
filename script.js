@@ -50,7 +50,6 @@ const searchPokemon = async (event) => {
   });
   if (pokemon) {
     await fetchPokemon(pokemon.name || pokemon.id);
-    // await fetchPokemon(pokemanValidName);
     const { name, id, height, weight, sprites, types, stats } =
       individualPokemanData;
     const { front_default } = sprites;
