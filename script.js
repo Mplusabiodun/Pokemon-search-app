@@ -1,5 +1,7 @@
 let searchInput = document.getElementById("search-input");
 let searchBtn = document.getElementById("search-button");
+let validPokemon = "https://pokeapi-proxy.freecodecamp.rocks/api/pokemon";
+
 let hp = document.getElementById("hp");
 let attack = document.getElementById("attack");
 let defense = document.getElementById("defense");
@@ -7,14 +9,15 @@ let specialAttack = document.getElementById("special-attack");
 let specialDefense = document.getElementById("special-defense");
 let speed = document.getElementById("speed");
 let typesOfPokemon = document.querySelector("#types");
-let validPokemon = "https://pokeapi-proxy.freecodecamp.rocks/api/pokemon";
-let pokemanData;
-let individualPokemanData;
+
 let pokemonName = document.getElementById("pokemon-name");
 let pokemonId = document.getElementById("pokemon-id");
 let pokemonWeight = document.getElementById("weight");
 let pokemonHeight = document.getElementById("height");
 let spriteContainer = document.getElementById("sprite-container");
+
+let pokemanData;
+let individualPokemanData;
 
 const fetchValidPokemon = async () => {
   try {
@@ -33,16 +36,21 @@ const searchPokemon = async (event) => {
   let pokemanInvalid = searchInput.value;
   let pokemanValidName = searchInput.value.toLowerCase();
   let pokemanValidId = parseInt(pokemanValidName);
-  console.log(pokemanValidName);
   console.log(pokemanInvalid);
-
+  if (pokemanValidName === "red") {
+    alert("Pokémon not found");
+    resetDisplay();
+    return;
+  }
   resetDisplay();
+  console.log(pokemanValidName);
   const { results } = pokemanData;
   const pokemon = results?.find((result) => {
     return result.name === pokemanValidName || result.id === pokemanValidId;
   });
   if (pokemon) {
     await fetchPokemon(pokemon.name || pokemon.id);
+    // await fetchPokemon(pokemanValidName);
     const { name, id, height, weight, sprites, types, stats } =
       individualPokemanData;
     const { front_default } = sprites;
@@ -75,12 +83,9 @@ const searchPokemon = async (event) => {
     specialAttack.textContent = stats[3].base_stat;
     specialDefense.textContent = stats[4].base_stat;
     speed.textContent = stats[5].base_stat;
-  } else if (pokemanInvalid === "Red") {
-    resetDisplay();
-    alert("Pokémon not found");
   } else {
-    resetDisplay();
     alert("Pokémon not found");
+    resetDisplay();
   }
 };
 
@@ -112,6 +117,8 @@ const fetchPokemon = async (pokemanIdentifier) => {
     individualPokemanData = responseData;
     console.log(individualPokemanData);
   } catch (err) {
+    alert("Pokémon not found");
+    resetDisplay();
     console.log(err);
   }
 };
